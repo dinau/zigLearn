@@ -14,5 +14,5 @@ run: all
 	bash ./time.sh
 
 clean:
-	rm -fr zig-out zig-cache
-	rm *.exe *.pdb
+	-rm -fr zig-out zig-cache src/zig-cache
+	-rm *.exe *.pdb

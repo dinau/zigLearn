@@ -10,7 +10,7 @@ ZIG = zig
 SRCS = src/main.zig
 all: $(BINDIR)/$(TARGET)
 
-$(BINDIR)/$(TARGET): $(SRCS)
+$(BINDIR)/$(TARGET): $(SRCS) build.zig
 	$(ZIG) build $(OPT)
 	@-ls -al $(BINDIR)/$(TARGET)
 	@-size $(BINDIR)/$(TARGET)

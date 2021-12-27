@@ -4,7 +4,7 @@ TARGET = xprintf_stdio$(EXE)
 BINDIR = zig-out/bin
 
 LIBC_INC_DIR = -Id:/zig/lib/libc/musl
-XPRINTF += -I./src/xprintf src/xprintf/xprintf.c
+XPRINTF += -I./src/xprintf_int src/xprintf_int/xprintf.c
 LIBC += $(LIBC_INC_DIR) -lc
 
 SRCS = src/main.zig
@@ -25,5 +25,5 @@ run: all
 
 
 clean:
-	-@rm -fr zig-out zig-cache
+	-@rm -fr zig-out zig-cache src/zig-cache
 	-@rm *.exe *.pdb

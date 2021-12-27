@@ -14,8 +14,8 @@ pub fn build(b: *std.build.Builder) void {
     const exe = b.addExecutable("xprintf_stdio", "src/main.zig");
     exe.setTarget(target);
     exe.setBuildMode(mode);
-    exe.addCSourceFile("src/xprintf/xprintf.c", &[_][]const u8 {});
-    exe.addIncludeDir("src/xprintf");
+    exe.addCSourceFile("src/xprintf_int/xprintf.c", &[_][]const u8 {});
+    exe.addIncludeDir("src/xprintf_int");
     exe.linkLibC();
     exe.install();
 

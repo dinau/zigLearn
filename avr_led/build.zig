@@ -10,15 +10,10 @@ pub fn build(b: *std.build.Builder) void {
     // Standard release options allow the person running `zig build` to select
     // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall.
     const mode = b.standardReleaseOptions();
-    //const mode = .ReleaseSmall;
 
-    const exe = b.addExecutable("xprintf_win", "src/main.zig");
+    const exe = b.addExecutable("avr_led", "src/main.zig");
     exe.setTarget(target);
-    exe.addPackagePath("win32api", "../zigwin32/win32.zig");
     exe.setBuildMode(mode);
-    exe.addCSourceFile("src/xprintf_int/xprintf.c", &[_][]const u8 {});
-    exe.addIncludeDir("src/xprintf_int");
-    //exe.linkLibC();
     exe.install();
 
     const run_cmd = exe.run();

@@ -14,7 +14,7 @@ pub fn build(b: *std.build.Builder) void {
     const exe = b.addExecutable("exec", "src/main.zig");
     exe.setTarget(target);
     exe.setBuildMode(mode);
-    exe.addPackagePath("win32api", "../../zigwin32/win32.zig");
+    exe.addPackagePath("win32api", "../zigwin32/win32.zig");
     exe.linkLibC();
     exe.install();
 

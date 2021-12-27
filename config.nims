@@ -1,4 +1,5 @@
-let dirTable = ["cmdarg"
+let dirTable = [ "avr_led"
+,"cmdarg"
 ,"dim"
 ,"enumWindows"
 ,"exec"
@@ -32,6 +33,7 @@ task clean, "":
                 echo "[ ",dir," ]"," -- No Makefile"
                 rmDir "zig-out"
                 rmDir "zig-cache"
+                rmDir "src/zig-cache"
 task run, "":
     for dir in dirTable:
         withDir dir:

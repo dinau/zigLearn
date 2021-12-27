@@ -25,8 +25,8 @@ chelloWinZigCC$(EXE): chelloWin.c
 	zig cc -mwindows  -o $@ $(CFLAGS) $<
 
 clean:
-	rm *.exe *.pdb
-	rm -fr zig-out zig-cache
+	@-rm *.exe *.pdb
+	@-rm -fr zig-out zig-cache src/zig-cache
 
 run: all
 	ls -al *.exe

@@ -13,7 +13,7 @@ pub fn build(b: *std.build.Builder) void {
 
     const exe = b.addExecutable("enumWindows", "src/main.zig");
     exe.setTarget(target);
-    exe.addPackagePath("win32api", "../../zigwin32/win32.zig");
+    exe.addPackagePath("win32api", "../zigwin32/win32.zig");
     //exe.addPackagePath("everything", "../zigwin32/win32/everything.zig");
     exe.setBuildMode(mode);
     exe.install();
