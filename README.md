@@ -5,4 +5,4 @@ Zig language newbie memo
 ```
 $ git clone --recursive https://github.com/dinau/zigLearn.git
 ```
-You can `make` source code in respective folders.
+You can build using `$ make` in respective folders.
