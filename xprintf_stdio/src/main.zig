@@ -12,6 +12,6 @@ pub fn main() void {
     var year :i32 =2021;
     c.xfunc_out = outc;
 
-    c.xprintf("Hello xprintf()=%d: %X",year,year);
+    c.xprintf("Hello xprintf()=%d: %X\n",year,year);
 }
 

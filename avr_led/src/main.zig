@@ -1,5 +1,6 @@
+// avr_led/src/main.zig
 // zig-0.9.0 2021/12
-// avr-led/src/main.zig
+// Simple LED blinker program for Arduino Uno/Nano
 // Refered from https://github.com/dinau/zig-avr-testbed
 pub const DDRB = @intToPtr(*volatile u8, 0x24);
 pub const PORTB = @intToPtr(*volatile u8, 0x25);
