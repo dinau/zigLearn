@@ -4,14 +4,13 @@ const c = @cImport({
     @cInclude("xprintf.h");
 });
 
-fn outc(ch:u8) callconv(.C) void{
+fn outc(ch: u8) callconv(.C) void {
     _ = c.putchar(ch);
 }
 
 pub fn main() void {
-    var year :i32 =2021;
+    const year: i32 = 2024;
     c.xfunc_out = outc;
 
-    c.xprintf("Hello xprintf()=%d: %X\n",year,year);
+    c.xprintf("Hello xprintf() = %d: 0x%X\n", year, year);
 }
-

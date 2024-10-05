@@ -3,7 +3,7 @@ include ../common.mk
 TARGET = hello$(EXE)
 
 BINDIR = zig-out/bin
-OPT += -Drelease-small
+OPT = --release=small
 
 ZIG = zig
 
@@ -20,4 +20,3 @@ run: all
 
 clean:
 	rm -fr zig-out zig-cache
-

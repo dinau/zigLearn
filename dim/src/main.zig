@@ -16,8 +16,8 @@ test "4x4 multidimensional arrays" {
     try expect(mat4x4[1][1] == 1.0);
 
     // Here we iterate with for loops.
-    for (mat4x4) |row, row_index| {
-        for (row) |cell, column_index| {
+    for (mat4x4,0..) |row, row_index| {
+        for (row,0..) |cell, column_index| {
             if (row_index == column_index) {
                 try expect(cell == 1.0);
             }
@@ -37,8 +37,8 @@ test "3x4 multidimensional arrays" {
     try expect(mat3x4[1][1] == 1.0);
 
     // Here we iterate with for loops.
-    for (mat3x4) |row, row_index| {
-        for (row) |cell, column_index| {
+    for (mat3x4,0..) |row, row_index| {
+        for (row,0..) |cell, column_index| {
             if (row_index == column_index) {
                 try expect(cell == 1.0);
             }
@@ -49,4 +49,3 @@ test "3x4 multidimensional arrays" {
 pub fn main() anyerror!void {
     std.log.info("All your codebase are belong to us.", .{});
 }
-

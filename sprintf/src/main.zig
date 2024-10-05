@@ -7,7 +7,7 @@ pub fn main() !void {
     const n = -123;
     var buf: [16]u8 = undefined;
 
-    const slice: []u8 = try std.fmt.bufPrint( &buf, "{s} bar {}", .{ s, n });
+    const slice: []u8 = try std.fmt.bufPrint(&buf, "{s} bar {}", .{ s, n });
 
-    std.debug.print("ret:{s}\n", .{ slice });
+    std.debug.print("ret:{s}\n", .{slice});
 }

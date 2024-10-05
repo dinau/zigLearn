@@ -1,4 +1,6 @@
-	time ./fib-fast.exe
-	time ./fib-fast.exe
-	time ./fib-size.exe
-	time ./fib-size.exe
+#!/bin/bash
+
+time ./fib-fast.exe $1
+time ./fib-fast.exe $1
+time ./fib-size.exe $1
+time ./fib-size.exe $1

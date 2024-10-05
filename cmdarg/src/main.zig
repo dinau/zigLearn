@@ -11,7 +11,7 @@ pub fn main() anyerror!void {
     const args = try std.process.argsAlloc(allocator);
 
     std.debug.print("number of args: {}\n", .{args.len});
-    for (args) |arg, i| {
+    for (args, 0..) |arg, i| {
         std.debug.print("args[{}]: {s}\n", .{ i, arg });
     }
 }
@@ -24,4 +24,3 @@ pub fn main() anyerror!void {
 // args[1]: 12
 // args[2]: 34
 // args[3]: 56
-

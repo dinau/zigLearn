@@ -4,6 +4,6 @@ const c = @cImport({
 });
 
 pub fn main() void {
-    var year :i32 =2021;
-    _ = c.printf("Hello world %d\n",year);
+    const year: i32 = 2024;
+    _ = c.printf("Hello world %d\n", year);
 }

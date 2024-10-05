@@ -2,22 +2,11 @@ include ../common.mk
 
 TARGET = cmdarg$(EXE)
 
-BINDIR = zig-out/bin
-OPT += -Drelease-small
+OPT += --release=fast
 
-ZIG = zig
-
-SRCS = src/main.zig
-all: $(BINDIR)/$(TARGET)
-
-$(BINDIR)/$(TARGET): $(SRCS)
-	$(ZIG) build $(OPT)
-	@-ls -al $(BINDIR)/$(TARGET)
+all:
+	zig build $(OPT) run -- abc def 123
 	@-size $(BINDIR)/$(TARGET)
 
-run: all
-	./$(BINDIR)/$(TARGET) 123 456 789
 
-clean:
-	rm -fr zig-out zig-cache
-
+include ../common.after.mk

@@ -1,5 +1,6 @@
 // Referred from,
 // https://stackoverflow.com/questions/62018241/current-way-to-get-user-input-in-zig
+// zig-0.14.0 2024/10
 // zig-0.9.0 2021/12
 // stdin/src/main.zig
 
@@ -23,5 +24,5 @@ fn ask_user() !i64 {
 
 pub fn main() anyerror!void {
     const stdout = std.io.getStdOut().writer();
-    try stdout.print("Your number is {}", .{ask_user()});
+    try stdout.print("Your number is {}", .{try ask_user()});
 }

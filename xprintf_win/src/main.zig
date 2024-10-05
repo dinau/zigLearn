@@ -5,19 +5,18 @@ const c = @cImport({
     @cInclude("xprintf.h");
 });
 
-fn outc(ch:u8) callconv(.C) void{
-    var num :u32 = 0;
+fn outc(ch: u8) callconv(.C) void {
+    var num: u32 = 0;
     var str: [1]u8 = undefined;
     str[0] = ch;
-    _ = win.WriteConsoleA(win.GetStdHandle(win.STD_OUTPUT_HANDLE), &str,
-        1, &num, null);
+    _ = win.WriteConsoleA(win.GetStdHandle(win.STD_OUTPUT_HANDLE), &str, 1, &num, null);
 }
 
 pub fn main() void {
-    var year :i32 =2021;
+    const year: i32 = 2024;
     c.xfunc_out = outc;
     // MS-DOS窓以外のコンソールでは表示できない
-    c.xprintf("Hello xprintf()=%d: 0x%04X\n",year,year);
+    c.xprintf("Hello xprintf() = %d: 0x%04X\n", year, year);
 }
 
 //pub extern "KERNEL32" fn GetStdHandle(

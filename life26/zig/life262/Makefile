@@ -3,7 +3,6 @@ include ../common.mk
 TARGET = life262$(EXE)
 
 BINDIR = zig-out/bin
-OPT += -Drelease-small
 
 ZIG = zig
 
@@ -16,8 +15,7 @@ $(BINDIR)/$(TARGET): $(SRCS)
 	@-size $(BINDIR)/$(TARGET)
 
 run: all
-	#./$(BINDIR)/$(TARGET)
+	./$(BINDIR)/$(TARGET)
 
 clean:
 	rm -fr zig-out zig-cache
-

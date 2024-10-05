@@ -1,8 +1,10 @@
+// Zig v0.14.0-dev 2024/10
 // Zig v0.9.0 2021/12
 // exec/src/main.zig
 // UTF-8
 const std = @import("std");
 const win = @import("win32api").everything;
+const msg = @import("win32api").ui.windows_and_messaging;
 const process = @cImport({
     @cInclude("process.h");
 });
@@ -16,8 +18,8 @@ fn stdOsExecveZ(cmd: [*:0]const u8) anyerror!void {
     const stdout = std.io.getStdOut().writer();
     const args = [_:null]?[*:0]const u8{ "-v", null };
     const env = [_:null]?[*:0]const u8{ "PATH", null };
-    std.os.execveZ(cmd, &args, &env) catch {
-        try stdout.print("\n{s}", .{"Error!: execveZ()"});
+    std.posix.execvpeZ(cmd, &args, &env) catch {
+        try stdout.print("\n{s}", .{"Error!: execvpeZ()"});
     };
 }
 //pub extern "SHELL32" fn ShellExecuteW(
@@ -35,7 +37,7 @@ fn win32ShellExecute() void {
     const opn: ?[*:0]const u16 = std.unicode.utf8ToUtf16LeStringLiteral("open");
     const cmd: ?[*:0]const u16 = std.unicode.utf8ToUtf16LeStringLiteral("notepad");
     const arg: ?[*:0]const u16 = std.unicode.utf8ToUtf16LeStringLiteral("src/main.zig");
-    _ = win.ShellExecuteW(null, opn, cmd, arg, null, @enumToInt(win.SW_SHOWNORMAL));
+    _ = win.ShellExecuteW(null, opn, cmd, arg, null, msg.SW_SHOW.SHOWNORMAL);
 }
 
 pub fn main() anyerror!void {

@@ -4,15 +4,13 @@ include ../common.mk
 SRC = src/main.zig
 
 all: fib-fast$(EXE) fib-size$(EXE)
+	bash ./time.sh 41
 
-fib-fast$(EXE):
-	zig build-exe $(SRC) -O ReleaseFast -femit-bin=$@
-fib-size$(EXE):
-	zig build-exe $(SRC) -O ReleaseSmall -femit-bin=$@
+fib-fast$(EXE): $(SRC)
+	zig build-exe $(<) -O ReleaseFast -femit-bin=$@
 
-run: all
-	bash ./time.sh
+fib-size$(EXE): $(SRC)
+	zig build-exe $(<) -O ReleaseSmall -femit-bin=$@
 
-clean:
-	-rm -fr zig-out zig-cache src/zig-cache
-	-rm *.exe *.pdb
+
+include ../common.after.mk

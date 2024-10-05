@@ -1,23 +1,11 @@
 include ../common.mk
 
 TARGET = dim$(EXE)
-
-BINDIR = zig-out/bin
-OPT += -Drelease-small
-
-ZIG = zig
+OPT += --release=fast
 
 SRCS = src/main.zig
-all: $(BINDIR)/$(TARGET)
 
-$(BINDIR)/$(TARGET): $(SRCS)
-	$(ZIG) build $(OPT)
-	@-ls -al $(BINDIR)/$(TARGET)
-	@-size $(BINDIR)/$(TARGET)
+all:
+	zig test src\main.zig
 
-run: all
-	./$(BINDIR)/$(TARGET)
-
-clean:
-	rm -fr zig-out zig-cache
-
+include ../common.after.mk
