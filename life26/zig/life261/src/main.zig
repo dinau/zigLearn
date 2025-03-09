@@ -19,10 +19,10 @@ pub fn main() anyerror!void {
   var buf: [100:0]u8 = undefined;
   const stdin = std.io.getStdIn().reader();
   const stdout = std.io.getStdOut().writer();
-  for (realpf, 0..) |_, h| {
-    for (h, 0..) |_, w| {
-      realpf[h][w] = 0;
-    }
+  for (0..H) |h| {
+      for (0..W) |w| {
+          realpf[h][w] = 0;
+      }
   }
   while (try stdin.readUntilDelimiterOrEof(buf[0..], '\n')) |user_input| {
     const sUserInput = user_input[0..(user_input.len - 1)]; // Delete 0x0D end of line
