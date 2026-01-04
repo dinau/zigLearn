@@ -2,21 +2,16 @@ include ../common.mk
 
 TARGET = $(notdir $(CURDIR))$(EXE)
 
-BINDIR = zig-out/bin
+#OPT += --release=fast
+#OPT += --release=safe
 OPT += --release=small
 
-ZIG = zig
+BINDIR = zig-out/bin
 
-SRCS = src/main.zig
-all: $(BINDIR)/$(TARGET)
+all:
+	zig build $(OPT)
+	@-ls -al $(BINDIR)
+	@-size $(BINDIR)/$(TARGET)
 
-$(BINDIR)/$(TARGET): $(SRCS)
-	$(ZIG) build $(OPT)
-	@-ls -al $(@)
-	@-size $(@)
 
-run: all
-	./$(BINDIR)/$(TARGET)
-
-clean:
-	rm -fr zig-out zig-cache
+include ../../../common.after.mk

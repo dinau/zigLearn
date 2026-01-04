@@ -4,7 +4,7 @@ TARGET = enumWindows$(EXE)
 
 #OPT += --release=fast
 #OPT += --release=safe
-#OPT += --release=small
+OPT += --release=small
 
 all:
 	zig build $(OPT)

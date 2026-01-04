@@ -1,4 +1,5 @@
-let dirTable = ["avr_led"
+let dirTable = [
+  "avr_led"
 , "cmdarg"
 , "dim"
 , "enumWindows"
@@ -41,8 +42,7 @@ task clean, "":
       else:
         echo "[ ", dir, " ]", " -- No Makefile"
         rmDir "zig-out"
-        rmDir "zig-cache"
-        rmDir "src/zig-cache"
+        rmDir ".zig-cache"
 
 task run, "":
   for dir in dirTable:
@@ -52,6 +52,16 @@ task run, "":
         exec "make run"
       else:
         echo "[ ", dir, " ]", " -- No Makefile"
-        exec "zib build run"
+        exec "zig build run"
+
+task fmt, "":
+  for dir in dirTable:
+    withDir dir:
+      if fileExists("Makefile"):
+        echo "[ ", dir, " ]", " -- make"
+        exec "make fmt"
+      else:
+        echo "[ ", dir, " ]", " -- No Makefile"
+        exec "zig fmt ."
 task build, "":
   makeTask()

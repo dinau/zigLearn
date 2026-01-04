@@ -3,20 +3,22 @@ main.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  000000d0  00000164  2**0
+  0 .data         00000000  00800100  000000d2  00000166  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000000d0  00000000  00000000  00000094  2**2
+  1 .text         000000d2  00000000  00000000  00000094  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000164  2**2
-                  CONTENTS, READONLY, OCTETS
-  3 .debug_info   000005f4  00000000  00000000  000001a4  2**0
-                  CONTENTS, READONLY, DEBUGGING, OCTETS
-  4 .debug_abbrev 000005a2  00000000  00000000  00000798  2**0
-                  CONTENTS, READONLY, DEBUGGING, OCTETS
-  5 .debug_line   0000001d  00000000  00000000  00000d3a  2**0
-                  CONTENTS, READONLY, DEBUGGING, OCTETS
-  6 .debug_str    00000208  00000000  00000000  00000d57  2**0
-                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  2 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000168  2**2
+                  CONTENTS, READONLY
+  3 .debug_aranges 00000020  00000000  00000000  000001a8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   000006af  00000000  00000000  000001c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 000005b6  00000000  00000000  00000877  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   0000007c  00000000  00000000  00000e2d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_str    00000208  00000000  00000000  00000ea9  2**0
+                  CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
@@ -55,49 +57,50 @@ Disassembly of section .text:
   6e:	d8 e0       	ldi	r29, 0x08	; 8
   70:	de bf       	out	0x3e, r29	; 62
   72:	cd bf       	out	0x3d, r28	; 61
-  74:	0e 94 55 00 	call	0xaa	; 0xaa <main>
-  78:	0c 94 66 00 	jmp	0xcc	; 0xcc <_exit>
+  74:	0e 94 56 00 	call	0xac	; 0xac <main>
+  78:	0c 94 67 00 	jmp	0xce	; 0xce <_exit>
 
 0000007c <__bad_interrupt>:
   7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000080 <__vector_13>:
-  80:	0f 92       	push	r0
-  82:	0f b6       	in	r0, 0x3f	; 63
-  84:	0f 92       	push	r0
-  86:	8f 93       	push	r24
-  88:	9f 93       	push	r25
-  8a:	80 e2       	ldi	r24, 0x20	; 32
-  8c:	95 b1       	in	r25, 0x05	; 5
-  8e:	98 27       	eor	r25, r24
-  90:	95 b9       	out	0x05, r25	; 5
-  92:	86 ed       	ldi	r24, 0xD6	; 214
-  94:	92 ed       	ldi	r25, 0xD2	; 210
-  96:	90 93 85 00 	sts	0x0085, r25	; 0x800085 <__DATA_REGION_ORIGIN__+0x25>
-  9a:	80 93 84 00 	sts	0x0084, r24	; 0x800084 <__DATA_REGION_ORIGIN__+0x24>
-  9e:	9f 91       	pop	r25
-  a0:	8f 91       	pop	r24
-  a2:	0f 90       	pop	r0
-  a4:	0f be       	out	0x3f, r0	; 63
-  a6:	0f 90       	pop	r0
-  a8:	18 95       	reti
+  80:	78 94       	sei
+  82:	0f 92       	push	r0
+  84:	0f b6       	in	r0, 0x3f	; 63
+  86:	0f 92       	push	r0
+  88:	8f 93       	push	r24
+  8a:	9f 93       	push	r25
+  8c:	80 e2       	ldi	r24, 0x20	; 32
+  8e:	95 b1       	in	r25, 0x05	; 5
+  90:	98 27       	eor	r25, r24
+  92:	95 b9       	out	0x05, r25	; 5
+  94:	86 ed       	ldi	r24, 0xD6	; 214
+  96:	92 ed       	ldi	r25, 0xD2	; 210
+  98:	90 93 85 00 	sts	0x0085, r25	; 0x800085 <__DATA_REGION_ORIGIN__+0x25>
+  9c:	80 93 84 00 	sts	0x0084, r24	; 0x800084 <__DATA_REGION_ORIGIN__+0x24>
+  a0:	9f 91       	pop	r25
+  a2:	8f 91       	pop	r24
+  a4:	0f 90       	pop	r0
+  a6:	0f be       	out	0x3f, r0	; 63
+  a8:	0f 90       	pop	r0
+  aa:	18 95       	reti
 
-000000aa <main>:
-  aa:	25 9a       	sbi	0x04, 5	; 4
-  ac:	86 ed       	ldi	r24, 0xD6	; 214
-  ae:	92 ed       	ldi	r25, 0xD2	; 210
-  b0:	90 93 85 00 	sts	0x0085, r25	; 0x800085 <__DATA_REGION_ORIGIN__+0x25>
-  b4:	80 93 84 00 	sts	0x0084, r24	; 0x800084 <__DATA_REGION_ORIGIN__+0x24>
-  b8:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__DATA_REGION_ORIGIN__+0x20>
-  bc:	85 e0       	ldi	r24, 0x05	; 5
-  be:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__DATA_REGION_ORIGIN__+0x21>
-  c2:	81 e0       	ldi	r24, 0x01	; 1
-  c4:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__DATA_REGION_ORIGIN__+0xf>
-  c8:	78 94       	sei
-  ca:	ff cf       	rjmp	.-2      	; 0xca <.Lname33+0x2>
+000000ac <main>:
+  ac:	25 9a       	sbi	0x04, 5	; 4
+  ae:	86 ed       	ldi	r24, 0xD6	; 214
+  b0:	92 ed       	ldi	r25, 0xD2	; 210
+  b2:	90 93 85 00 	sts	0x0085, r25	; 0x800085 <__DATA_REGION_ORIGIN__+0x25>
+  b6:	80 93 84 00 	sts	0x0084, r24	; 0x800084 <__DATA_REGION_ORIGIN__+0x24>
+  ba:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__DATA_REGION_ORIGIN__+0x20>
+  be:	85 e0       	ldi	r24, 0x05	; 5
+  c0:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__DATA_REGION_ORIGIN__+0x21>
+  c4:	81 e0       	ldi	r24, 0x01	; 1
+  c6:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__DATA_REGION_ORIGIN__+0xf>
+  ca:	78 94       	sei
+  cc:	ff cf       	rjmp	.-2      	; 0xcc <main+0x20>
 
-000000cc <_exit>:
-  cc:	f8 94       	cli
+000000ce <_exit>:
+  ce:	f8 94       	cli
 
-000000ce <__stop_program>:
-  ce:	ff cf       	rjmp	.-2      	; 0xce <__stop_program>
+000000d0 <__stop_program>:
+  d0:	ff cf       	rjmp	.-2      	; 0xd0 <__stop_program>

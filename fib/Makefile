@@ -1,5 +1,8 @@
 include ../common.mk
 
+#OPT += --release=fast
+#OPT += --release=safe
+OPT += --release=small
 
 SRC = src/main.zig
 

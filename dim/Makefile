@@ -1,7 +1,10 @@
 include ../common.mk
 
 TARGET = dim$(EXE)
-OPT += --release=fast
+
+#OPT += --release=fast
+#OPT += --release=safe
+OPT += --release=small
 
 SRCS = src/main.zig
 

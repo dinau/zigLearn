@@ -1,8 +1,13 @@
-.PHONY: clean run
+.PHONY: clean run fmt
 
 all:
 	@nim make
 clean:
-	@nim clean
+	@nim $@
 run:
-	@nim run
+	@nim $@
+fmt:
+	@nim $@
+
+
+MAKEFLAGS += --no-print-directory

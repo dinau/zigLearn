@@ -1,3 +1,4 @@
+// zig-0.15.2 2026/01
 // Referred from,
 // https://stackoverflow.com/questions/62018241/current-way-to-get-user-input-in-zig
 // zig-0.14.0 2024/10
@@ -7,22 +8,23 @@
 const std = @import("std");
 
 fn ask_user() !i64 {
-    const stdin = std.io.getStdIn().reader();
-    const stdout = std.io.getStdOut().writer();
-
     var buf: [10]u8 = undefined;
+    var stdin = std.fs.File.stdin().reader(&buf);
 
-    try stdout.print("A number please: ", .{});
+    std.debug.print("A number please: ", .{});
+    const user_input = try stdin.interface.takeDelimiterExclusive('\n');
+    const sUserInput = if (user_input.len > 0 and user_input[user_input.len - 1] == '\r')
+        user_input[0..(user_input.len - 1)]
+    else
+        user_input;
 
-    if (try stdin.readUntilDelimiterOrEof(buf[0..], '\n')) |user_input| {
-        const sIn = std.mem.trimRight(u8, user_input, "\n\r "); // Remove '\n\r '
-        return std.fmt.parseInt(i64, sIn, 10);
+    if (sUserInput.len > 0) {
+        return std.fmt.parseInt(i64, sUserInput, 10);
     } else {
         return @as(i64, 0);
     }
 }
 
 pub fn main() anyerror!void {
-    const stdout = std.io.getStdOut().writer();
-    try stdout.print("Your number is {}", .{try ask_user()});
+    std.debug.print("Your number is {}", .{try ask_user()});
 }

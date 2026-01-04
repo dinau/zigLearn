@@ -1,3 +1,4 @@
+// zig-0.15.2     2026/01
 // zig-0.14.0-dev 2024/10
 // zig-0.9.0      2021/12
 
@@ -7,10 +8,9 @@ const win = @import("win32api").everything;
 const TITILE_MAX: i32 = 2048;
 var sTitle: [TITILE_MAX:0]u8 = undefined;
 var gHandle: win.HWND = undefined;
-pub fn callBackProc(hWnd: win.HWND, param: win.LPARAM) callconv(@import("std").os.windows.WINAPI) win.BOOL {
+pub fn callBackProc(hWnd: win.HWND, param: win.LPARAM) callconv(.winapi) win.BOOL {
     _ = param;
-    const stdout = std.io.getStdOut().writer();
-    const sLen:usize = @intCast(win.GetWindowTextA(hWnd, &sTitle, TITILE_MAX));
+    const sLen: usize = @intCast(win.GetWindowTextA(hWnd, &sTitle, TITILE_MAX));
     if (0 < sLen) {
         sTitle[sLen] = 0;
         const a = std.ascii.startsWithIgnoreCase(std.mem.span(sTitle[0..].ptr), "Default IME");
@@ -19,16 +19,15 @@ pub fn callBackProc(hWnd: win.HWND, param: win.LPARAM) callconv(@import("std").o
             // discard
         } else {
             gHandle = hWnd;
-            stdout.print("[{}]:{s}\n", .{ gHandle, sTitle }) catch return 1;
+            std.debug.print("[{}]:{s}\n", .{ gHandle, sTitle });
         }
     }
     return 1;
 }
 
 pub fn main() anyerror!void {
-    const stdout = std.io.getStdOut().writer();
     _ = win.EnumWindows(callBackProc, 0);
-    try stdout.print("Last process number:{}", .{gHandle});
+    std.debug.print("Last process number:{}", .{gHandle});
 }
 // 参考
 //pub const WNDENUMPROC = fn(

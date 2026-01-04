@@ -1,16 +1,15 @@
 const std = @import("std");
-const c = @cImport({
-    @cInclude("stdio.h");
-    @cInclude("xprintf.h");
-});
+const xp = @import("xprintf");
 
-fn outc(ch: u8) callconv(.C) void {
-    _ = c.putchar(ch);
+pub extern fn putchar(_Ch: c_int) c_int;
+
+fn outc(ch: u8) callconv(.c) void {
+    //_ = c.putchar(ch);
+    _ = putchar(ch);
 }
 
 pub fn main() void {
-    const year: i32 = 2024;
-    c.xfunc_out = outc;
-
-    c.xprintf("Hello xprintf() = %d: 0x%X\n", year, year);
+    const year: i32 = 2026;
+    xp.xfunc_out = outc;
+    _ = xp.xprintf("Hello xprintf() = %d: 0x%X\n", year, year);
 }

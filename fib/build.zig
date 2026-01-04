@@ -6,15 +6,18 @@ pub fn build(b: *std.build.Builder) void {
     // means any target is allowed, and the default is native. Other options
     // for restricting supported target set are available.
     const target = b.standardTargetOptions(.{});
+    const optimize = b.standardOptimizeOption(.{});
 
-    // Standard release options allow the person running `zig build` to select
-    // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall.
-    const mode = b.standardReleaseOptions();
+    const main_mod = b.createModule(.{
+        .root_source_file = b.path("src/main.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
 
-    const exe = b.addExecutable("fib", "src/main.zig");
-    exe.setTarget(target);
-    exe.setBuildMode(mode);
-    exe.install();
+    const exe = b.addExecutable(.{
+        .name = "fib",
+        .root_module = main_mod,
+    });
 
     const run_cmd = exe.run();
     run_cmd.step.dependOn(b.getInstallStep());

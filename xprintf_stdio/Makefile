@@ -2,6 +2,10 @@ include ../common.mk
 
 TARGET = xprintf_stdio$(EXE)
 
+#OPT += --release=fast
+#OPT += --release=safe
+OPT += --release=small
+
 LIBC_INC_DIR = -Ic:/zig/lib/libc/musl
 
 XPRINTF += -I./src/xprintf_int src/xprintf_int/xprintf.c

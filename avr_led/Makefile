@@ -28,4 +28,7 @@ CFLAGS  = -mmcu=$(MCU) -Os
 
 clean:
 	@rm -f *.dmp *.s *.hex *.bin *.out *.elf *.o *.lst
-	@rm -fr zig-cache zig-out src/zig-cache
+	@rm -fr .zig-cache zig-out
+
+fmt:
+	zig fmt .

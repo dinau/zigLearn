@@ -3,6 +3,10 @@ include ../common.mk
 TARGET = helloWin$(EXE)
 
 CC = gcc
+#OPT += --release=fast
+#OPT += --release=safe
+
+OPT += --release=small
 OPT_GCC +=-ffunction-sections -fdata-sections
 OPT_GCC +=-Wl,--gc-sections
 OPT_GCC += -Wl,-s -Os

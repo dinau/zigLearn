@@ -3,7 +3,7 @@
 const win = @import("std").os.windows;
 const std = @import("std");
 
-extern "user32" fn MessageBoxA(hWnd: ?win.HANDLE, lpText: ?win.LPCSTR, lpCaption: ?win.LPCSTR, uType: win.UINT) callconv(win.WINAPI) c_int;
+extern "user32" fn MessageBoxA(hWnd: ?win.HANDLE, lpText: ?win.LPCSTR, lpCaption: ?win.LPCSTR, uType: win.UINT) callconv(.winapi) c_int;
 
 pub export fn wWinMain(hInstance: win.HINSTANCE, hPrevInstance: ?win.HINSTANCE, lpCmdLine: win.PWSTR, nCmdShow: win.INT) win.INT {
     _ = hInstance;

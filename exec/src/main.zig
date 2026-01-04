@@ -1,5 +1,6 @@
+// zig-0.15.2      2026/01
 // Zig v0.14.0-dev 2024/10
-// Zig v0.9.0 2021/12
+// Zig v0.9.0      2021/12
 // exec/src/main.zig
 // UTF-8
 const std = @import("std");
@@ -15,11 +16,10 @@ fn libcSystem(cmd: [*]const u8) void {
 }
 
 fn stdOsExecveZ(cmd: [*:0]const u8) anyerror!void {
-    const stdout = std.io.getStdOut().writer();
     const args = [_:null]?[*:0]const u8{ "-v", null };
     const env = [_:null]?[*:0]const u8{ "PATH", null };
     std.posix.execvpeZ(cmd, &args, &env) catch {
-        try stdout.print("\n{s}", .{"Error!: execvpeZ()"});
+        std.debug.print("\n{s}", .{"Error!: execvpeZ()"});
     };
 }
 //pub extern "SHELL32" fn ShellExecuteW(

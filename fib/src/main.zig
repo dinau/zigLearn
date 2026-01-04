@@ -9,13 +9,11 @@ fn fib(n: i32) i32 {
 }
 
 pub fn main() anyerror!void {
-    const stdout = std.io.getStdOut().writer();
-
     var arena = heap.ArenaAllocator.init(heap.page_allocator);
     defer arena.deinit();
     const allocator = arena.allocator();
     const args = try std.process.argsAlloc(allocator);
 
     const num = try std.fmt.parseInt(i32, args[1], 10);
-    try stdout.print("{}", .{fib(num)});
+    std.debug.print("{}", .{fib(num)});
 }

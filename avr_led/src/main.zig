@@ -16,7 +16,7 @@ const one_second = 53974;
 const LED_PIN: u8 = 5;
 const LED_BIT: u8 = 1 << LED_PIN;
 
-export fn __vector_13() callconv(.Signal) void {
+export fn __vector_13() callconv(.avr_interrupt) void {
     PORTB.* ^= LED_BIT;
     TCNT1.* = one_second;
 }

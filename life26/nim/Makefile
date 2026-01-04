@@ -2,9 +2,12 @@ TARGET = life26nim
 OPT += --nimcache:.nimcache
 
 all:
-	nim c -d:release -d:strip $(OPT) $(TARGET).nim
+	nim c -d:release -d:strip --opt:size $(OPT) $(TARGET).nim
 
 .PHONY: clean
 
 clean:
-	rm -fr .nimcache $(TARGET).exe
+	@-rm -fr .nimcache $(TARGET).exe
+
+fmt:
+	nimpretty $(TARGET).nim

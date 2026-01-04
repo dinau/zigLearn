@@ -13,3 +13,6 @@ run: all
 
 clean:
 	@-rm -fr zig-out zig-cache .zig-cache *.pdb *.obj *.exe
+
+fmt:
+	zig fmt .

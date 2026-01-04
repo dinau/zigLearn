@@ -1,21 +1,17 @@
 include ../common.mk
 
-TARGET = life262$(EXE)
+TARGET = $(notdir $(CURDIR))$(EXE)
+
+#OPT += --release=fast
+#OPT += --release=safe
+OPT += --release=small
 
 BINDIR = zig-out/bin
 
-ZIG = zig
-
-SRCS = src/main.zig
-all: $(BINDIR)/$(TARGET)
-
-$(BINDIR)/$(TARGET): $(SRCS)
-	$(ZIG) build $(OPT)
-	@-ls -al $(BINDIR)/$(TARGET)
+all:
+	zig build $(OPT)
+	@-ls -al $(BINDIR)
 	@-size $(BINDIR)/$(TARGET)
 
-run: all
-	./$(BINDIR)/$(TARGET)
 
-clean:
-	rm -fr zig-out zig-cache
+include ../../../common.after.mk
