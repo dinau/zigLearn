@@ -7,6 +7,7 @@ let dirTable = [
 , "fib"
 , "hello"
 , "helloWin"
+, "json"
 , "life26/nim"
 , "life26/zig/life261"
 , "life26/zig/life262"

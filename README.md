@@ -1,5 +1,5 @@
 # zigLearn
-Zig language newbie memo
+Zig language for newbie
 
 ### Install
 ```

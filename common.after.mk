@@ -1,7 +1,6 @@
-
 BINDIR = zig-out/bin
 
-SRCS = src/main.zig
+SRCS += src/main.zig
 
 $(BINDIR)/$(TARGET): $(SRCS)
 	zig build $(OPT)
@@ -12,7 +11,7 @@ run: all
 	./$(BINDIR)/$(TARGET)
 
 clean:
-	@-rm -fr zig-out zig-cache .zig-cache *.pdb *.obj *.exe
+	@-rm -fr zig-out .zig-cache *.pdb *.obj *.exe
 
 fmt:
 	zig fmt .
