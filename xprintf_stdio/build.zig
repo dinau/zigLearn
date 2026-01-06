@@ -34,9 +34,9 @@ pub fn build(b: *std.Build) void {
         .name = exe_name,
         .root_module = main_mod,
     });
+    exe.root_module.link_libc = true;
     exe.root_module.addImport(mod_name, xprintf_mod);
 
-    exe.linkLibC();
     b.installArtifact(exe);
 
     const run_cmd = b.addRunArtifact(exe);

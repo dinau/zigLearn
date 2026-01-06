@@ -34,14 +34,12 @@ pub fn build(b: *std.Build) void {
         .name = exe_name,
         .root_module = main_mod,
     });
+    exe.root_module.link_libc = true;
     exe.root_module.addImport(mod_name, xprintf_mod);
-
-    exe.linkLibC();
 
     const win32mod = b.addModule("win32api", .{ .root_source_file = b.path("../zigwin32/win32.zig") });
     exe.root_module.addImport("win32api", win32mod);
 
-    exe.linkLibC();
     b.installArtifact(exe);
 
     const run_cmd = b.addRunArtifact(exe);

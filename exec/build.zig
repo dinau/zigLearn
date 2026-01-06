@@ -13,8 +13,7 @@ pub fn build(b: *std.Build) void {
         .name = "exec",
         .root_module = main_mod,
     });
-
-    exe.linkLibC();
+    exe.root_module.link_libc = true;
 
     const win32mod = b.addModule("win32api", .{ .root_source_file = b.path("../zigwin32/win32.zig") });
     exe.root_module.addImport("win32api", win32mod);
